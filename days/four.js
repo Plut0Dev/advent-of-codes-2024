@@ -4,8 +4,8 @@ export function day4one(input) {
     let answer = 0;
     //forwards/backwards
     answer += input.match(/XMAS/g).length + input.match(/SAMX/g).length
-    input.split("\n").map((line, lineIndex, lineArr) => {
-        line.split("").map((letter, letterIndex, letterArr) => {
+    input.split("\n").forEach((line, lineIndex, lineArr) => {
+        line.split("").forEach((letter, letterIndex, letterArr) => {
             if (letter === "X") {
                 const vertSearch = (dir) => {
                     let directions;
@@ -47,11 +47,11 @@ export function day4one(input) {
 
 
                 }
-                const condition = (innerCond, dirX, dirY) => {
+                const condition = (dirX, dirY) => {
                     if (!dirY){
-                        return innerCond && vertSearch(dirX);
+                        return vertSearch(dirX);
                     }
-                    return innerCond && diaSearch(dirX,dirY);
+                    return diaSearch(dirX,dirY);
                 }
                 const maxHeight = lineArr.length-4;
                 const maxWidth = letterArr.length-4;
@@ -86,8 +86,8 @@ export function day4one(input) {
 }
 export function day4two(input) {
     let answer = 0;
-    input.split("\n").map((line, lineIndex, lineArr) => {
-        line.split("").map((letter, letterIndex, letterArr) => {
+    input.split("\n").forEach((line, lineIndex, lineArr) => {
+        line.split("").forEach((letter, letterIndex, letterArr) => {
             if (letter === "A" && lineIndex >= 1 && lineIndex < lineArr.length -1
                 && letterIndex >=1 && letterIndex < letterArr.length -1 ) {
                 let upperLeft = lineArr[lineIndex-1].split("")[letterIndex -1];
